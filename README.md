@@ -1,1 +1,3 @@
-# wave_algorithm_study
+## WAVE DAILY ALGORITHM CHALLENGE
+
+Register: https://www.hackerrank.com/ 
