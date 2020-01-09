@@ -14,7 +14,7 @@ import System.IO
 import System.IO.Unsafe
 
 -- Complete the kangaroo function below.
-kangaroo :: Int -> Int -> Int -> Int-> String
+kangaroo :: Int -> Int -> Int -> Int -> String
 kangaroo x1 v1 x2 v2
     | (x1 - x2) * (v1 - v2) > 0 = "NO"
     | (x1 - x2) `mod` (v2 - v1) == 0 = "YES"
