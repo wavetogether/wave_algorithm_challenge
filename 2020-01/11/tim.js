@@ -27,7 +27,6 @@ function readLine() {
 // Complete the getMinimumCost function below.
 function getMinimumCost(k, c) {
     c.sort((a,b) => a - b);
-    console.log(c)
     return buyFlower(k, c, 0, {}); // recursive fn
 }
 
@@ -36,15 +35,8 @@ function buyFlower(friends, costs, totalPrice, purchases) {
         return totalPrice;
     } else { // buy the most expensive flower with lowest purchase count
         const lowestPurchaseCount = getLowestPurchaseCount(purchases, friends);
-
         totalPrice += (lowestPurchaseCount + 1) * costs[costs.length-1];
-
-        if (purchases[lowestPurchaseCount]) {
-            purchases[lowestPurchaseCount]++;
-        } else {
-            purchases[lowestPurchaseCount] = 1;
-        }
-        // purchases[lowestPurchaseCount] = purchases[lowestPurchaseCount] + 1 || 1;
+        purchases[lowestPurchaseCount] = purchases[lowestPurchaseCount] + 1 || 1;
         costs.splice(costs.length-1,costs.length);
         return buyFlower(friends, costs, totalPrice, purchases);
     }
