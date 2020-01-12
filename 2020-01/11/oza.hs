@@ -15,7 +15,7 @@ import System.IO.Unsafe
 
 -- Complete the getMinimumCost function below.
 getMinimumCost::Int -> [Int] -> Int
-getMinimumCost k c = Data.List.foldr (\(index, price) cost -> cost + price * ((+1) $ index `div` k)) 0 $ addIndex $ sortDesc c
+getMinimumCost k c = Data.List.foldr (\(index, price) cost -> cost + price * ((+1) $ index `div` k)) 0 $ addIndex.sortDesc c
 
 sortDesc::[Int] -> [Int]
 sortDesc xs = reverse $ sort xs
