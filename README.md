@@ -1,3 +1,3 @@
 ## WAVE DAILY ALGORITHM CHALLENGE
 
-Register: https://www.hackerrank.com/ 
+Register: https://leetcode.com/
