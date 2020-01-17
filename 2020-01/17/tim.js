@@ -3,7 +3,8 @@
  * @param {number} n
  * @return {number}
  */
-var minPatches = function(nums, n) {
+
+var minPatches = function(nums, n) { //Discussion에 있는 알고리즘 참고함
   let numberToCheck = 1;
   let idx = 0;
   let patch = 0;
