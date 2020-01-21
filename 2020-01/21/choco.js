@@ -11,21 +11,17 @@ var gameOfLife = function(board) {
       // Count live neighbors of cell (i, j)
       let liveNeighborsCount = 0;
       // k, l for iterating neighbors
-      for (let k=i-1; k<=i+1; k++) {
-        for (let l=j-1; l<=j+1; l++) {
-          if (k === i && l === j) {
-            // It's me
-          } else if (prevBoard[k] !== undefined && prevBoard[k][l] !== undefined) {
-            liveNeighborsCount += prevBoard[k][l];
-          }
+      let k = i===0 ? 0 : i-1;
+      for (; k<=i+1 && k<board.length; k++) {
+        let l = j===0 ? 0 : j-1;
+        for (; l<=j+1 && l<board[0].length; l++) {
+          liveNeighborsCount += prevBoard[k][l];
         }
       }
       if (prevBoard[i][j]) {
-        if (liveNeighborsCount < 2) {
-          // dies by under-population
-          board[i][j] = 0;
-        } else if (liveNeighborsCount > 3) {
-          // dies by over-population
+        // my living point is added
+        if (liveNeighborsCount < 3 || liveNeighborsCount > 4) {
+          // dies by under-population or over-population
           board[i][j] = 0;
         }
         // lives to the next generation
