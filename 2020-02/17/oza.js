@@ -1,3 +1,6 @@
+// Runtime: 64 ms, faster than 73.63% of JavaScript online submissions for Merge Two Sorted Lists.
+// Memory Usage: 35.5 MB, less than 79.49% of JavaScript online submissions for Merge Two Sorted Lists.
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
