@@ -7,9 +7,11 @@
 영어 단어 사전이기 때문에 소문자 알파벳만 사용할 수 있고, 띄어쓰기가 있는 단어는 존재하지 않다고 가정할 수 있다.
 
 ## Example
+```
 add pad
 add dad
 search pad -> true
 search bad -> false
 search *ad -> true
 search d** -> true
+```
