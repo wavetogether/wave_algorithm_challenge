@@ -12,7 +12,7 @@ func minSteps(s string, t string) int {
     
 	steps := 0
 	
-  for char := range sCharCount {
+	for char := range sCharCount {
 		diff := sCharCount[char] - tCharCount[char]
 		if 0 < diff {
 			steps += diff
