@@ -1,5 +1,5 @@
 class Solution {
-    private lateinit var m: Array<IntArray>
+    private lateinit var m: Array<IntArray> // cache
 
     fun minInsertions(s: String): Int {
         m = Array(s.length) { IntArray(s.length) { -1 } }
