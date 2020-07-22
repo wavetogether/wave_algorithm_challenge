@@ -10,7 +10,7 @@ var nextPermutation = function(nums) {
         return;
     }
     
-    // Find first decreasing element
+    // Find last decreasing index
     const numsLength = nums.length;
     let lastDecreasingIndex = -1;
     for (let i=numsLength-2; i>=0; i--) {
@@ -26,7 +26,7 @@ var nextPermutation = function(nums) {
         return;
     }
     
-    // Find bigger element
+    // Find last minimum bigger index
     const lastDecreasingElement = nums[lastDecreasingIndex];
     let lastMinimumBiggerIndex = lastDecreasingIndex+1;
     for (let i=lastMinimumBiggerIndex; i<numsLength; i++) {
@@ -38,7 +38,7 @@ var nextPermutation = function(nums) {
         }
     }
     
-    // Swap first decreaseing element and last minimum bigger element
+    // Swap last decreaseing element and last minimum bigger element
     nums[lastDecreasingIndex] = nums[lastMinimumBiggerIndex];
     nums[lastMinimumBiggerIndex] = lastDecreasingElement;
     
