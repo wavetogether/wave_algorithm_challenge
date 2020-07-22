@@ -27,11 +27,11 @@ var nextPermutation = function(nums) {
     }
     
     // Find bigger element
-    const firstDecreasingElement = nums[lastDecreasingIndex];
+    const lastDecreasingElement = nums[lastDecreasingIndex];
     let lastMinimumBiggerIndex = lastDecreasingIndex+1;
     for (let i=lastMinimumBiggerIndex; i<numsLength; i++) {
         if (
-            nums[i] > firstDecreasingElement &&
+            nums[i] > lastDecreasingElement &&
             nums[i] <= nums[lastMinimumBiggerIndex]
         ) {
             lastMinimumBiggerIndex = i;
@@ -40,7 +40,7 @@ var nextPermutation = function(nums) {
     
     // Swap first decreaseing element and last minimum bigger element
     nums[lastDecreasingIndex] = nums[lastMinimumBiggerIndex];
-    nums[lastMinimumBiggerIndex] = firstDecreasingElement;
+    nums[lastMinimumBiggerIndex] = lastDecreasingElement;
     
     // Reverse after last decreasing index
     for (let i=lastDecreasingIndex+1; i<numsLength; i++) {
