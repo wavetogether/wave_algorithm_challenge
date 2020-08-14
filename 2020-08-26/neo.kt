@@ -1,7 +1,6 @@
 class Solution {
     private val `🍺🍺🍺` = ArrayList<List<Int>>()
     fun combinationSum(`🦑`: IntArray, `🍎`: Int): List<List<Int>> {
-        `🦑`.sort()
         `🐶`(`🦑`, ArrayList(), 0, 0, `🍎`)
         return `🍺🍺🍺`
     }
