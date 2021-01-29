@@ -1,7 +1,7 @@
 class Solution {
     fun findMinHeightTrees(n: Int, edges: Array<IntArray>): List<Int> {
         val g = HashMap<Int, HashSet<Int>>()
-        (0 until n).forEach { g[it] = HashSet() }
+        repeat(n) { g[it] = HashSet() }
         edges.forEach { (a, b) ->
             g[a]!!.add(b)
             g[b]!!.add(a)
