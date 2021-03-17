@@ -12,6 +12,10 @@ function countUniqueNumbersWithLength(length: number): number {
     if (length === 1) return 10;
     // if (length === 2) return 9 * 9;
     // if (length === 3) return 9 * 9 * 8;
+    // if (length === 4) return 9 * 9 * 8 * 7;
+    // ...
+    if (length > 10) return 0;
+    
     let count = 9;
     for (let i=0; i<length-1; i++) {
         count = count * (9 - i);
