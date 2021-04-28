@@ -1,38 +1,26 @@
-function canCross(stones: number[]): boolean {
-  const memo: { [indexAndPreviousJumpUnit: string]: boolean } = {};
-
-  function check(index: number, previousJumpUnit: number): boolean {
-
-    if (index === stones.length - 1) return true;
-
-    const indexAndPreviousJumpUnit = `${index}:${previousJumpUnit}`;
-    if (memo[indexAndPreviousJumpUnit] === false) return false;
-
-    let jumpables: { index: number, previousJumpUnit: number }[] = []; 
-    for (let i=-1; i<=1; i++) {
-      if (previousJumpUnit + i <= 0) continue;
-      const a = stones.indexOf(stones[index] + previousJumpUnit + i);
-      if (a > -1) {
-        jumpables.push({
-          index: a,
-          previousJumpUnit: previousJumpUnit + i
-        });
-      }
-    }
-
-    if (jumpables.length === 0) {
-      memo[indexAndPreviousJumpUnit] = false;
-      return false;
-    }
-    
-    const result = jumpables.some(j => check(j.index, j.previousJumpUnit));
-    memo[indexAndPreviousJumpUnit] = result;
-    return result;
-  }
-
+function canCross(stones: number[]) : boolean {
   if (stones[1] !== 1) return false;
 
-  const result = check(1, 1);
-  // console.log(memo);
-  return result;
-};
+  const crossingMap = new Map<number, Set<number>>();
+  stones.forEach(s => crossingMap.set(s, new Set()));
+  crossingMap.get(0)?.add(1);
+
+  for (let i = 0; i < stones.length - 1; i++) {
+    const currentPosition = stones[i];
+    const jumpUnits = [...crossingMap.get(currentPosition)!];
+    for (const jumpUnit of jumpUnits) {
+      const nextPosition = currentPosition + jumpUnit;
+      if (nextPosition === stones[stones.length - 1]) {
+        return true;
+      }
+      const nextJumpUnits = crossingMap.get(nextPosition);
+      if (nextJumpUnits !== undefined) {
+        if (jumpUnit - 1 > 0) nextJumpUnits.add(jumpUnit - 1);
+        nextJumpUnits.add(jumpUnit);
+        nextJumpUnits.add(jumpUnit + 1);
+      }
+    }
+  }
+
+  return false;
+}
