@@ -1,31 +1,38 @@
 function canCross(stones: number[]): boolean {
-    let notJumpables: { currentIndex: number, prevJumpUnit: number }[] = [];
-    function check(currentIndex: number, prevJumpUnit: number) {
-        // console.log(`check(${currentIndex}, ${prevJumpUnit})`);
-        // 종료 조건
-        if (currentIndex === stones.length - 1) return true;
-        // 가능한 돌들 찾기
-        const jumpables: { nextIndex: number, jumpUnit: number }[] = [];
-        for (let i=1; i<=prevJumpUnit+1; i++) {
-            const jumpUnit = stones[currentIndex + i] - stones[currentIndex];
-            // console.log('jumpUnit:', jumpUnit);
-            if (jumpUnit >= prevJumpUnit - 1 && jumpUnit <= prevJumpUnit+1) {
-                const isNotJumpable = notJumpables.find(nj => {
-                    return nj.currentIndex === currentIndex + i && nj.prevJumpUnit === jumpUnit;
-                });
-                if (!isNotJumpable) jumpables.push({ nextIndex: currentIndex + i, jumpUnit });
-            }
-            // 효율
-            if (jumpUnit > prevJumpUnit + 1) break;
-        }
-        // console.log('jumpables', jumpables);
-        if (jumpables.length === 0) {
-            notJumpables.push({ currentIndex, prevJumpUnit });
-            return false;
-        }
-        return jumpables.some(j => check(j.nextIndex, j.jumpUnit));
-    }
-    if (stones[1] !== 1) return false;
-    return check(1, 1);
-};
+  const memo: { [indexAndPreviousJumpUnit: string]: boolean } = {};
 
+  function check(index: number, previousJumpUnit: number): boolean {
+
+    if (index === stones.length - 1) return true;
+
+    const indexAndPreviousJumpUnit = `${index}:${previousJumpUnit}`;
+    if (memo[indexAndPreviousJumpUnit] === false) return false;
+
+    let jumpables: { index: number, previousJumpUnit: number }[] = []; 
+    for (let i=-1; i<=1; i++) {
+      if (previousJumpUnit + i <= 0) continue;
+      const a = stones.indexOf(stones[index] + previousJumpUnit + i);
+      if (a > -1) {
+        jumpables.push({
+          index: a,
+          previousJumpUnit: previousJumpUnit + i
+        });
+      }
+    }
+
+    if (jumpables.length === 0) {
+      memo[indexAndPreviousJumpUnit] = false;
+      return false;
+    }
+    
+    const result = jumpables.some(j => check(j.index, j.previousJumpUnit));
+    memo[indexAndPreviousJumpUnit] = result;
+    return result;
+  }
+
+  if (stones[1] !== 1) return false;
+
+  const result = check(1, 1);
+  // console.log(memo);
+  return result;
+};
