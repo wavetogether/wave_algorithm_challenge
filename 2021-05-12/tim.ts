@@ -37,8 +37,8 @@ function getDistance(x: number[], y: number[]): number {
 
 const examples = [
     {
-      question: [[0, 0], [1, 0], [2, 0]],
-      answer: 2
+        question: [[0, 0], [1, 0], [2, 0]],
+        answer: 2
     },
     {
         question: [[1,1],[2,2],[3,3]],
