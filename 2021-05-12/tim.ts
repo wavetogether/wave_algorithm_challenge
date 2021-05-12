@@ -23,7 +23,7 @@ function numberOfBoomerangs(points: number[][]): number {
 
         for (let value of ranges.values()) {
             if (value > 1) {
-                boomerangs += permutation(value, 2);
+                boomerangs += value * (value - 1);
             }
         };
     }
@@ -33,10 +33,6 @@ function numberOfBoomerangs(points: number[][]): number {
 
 function getDistance(x: number[], y: number[]): number {
     return Math.sqrt(Math.pow(x[0] - y[0], 2) + Math.pow(x[1] - y[1], 2));
-}
-
-function permutation(n: number, r: number) {
-    return n * (n - 1);
 }
 
 const examples = [
