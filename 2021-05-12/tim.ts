@@ -1,7 +1,7 @@
 // Runtime: 248 ms, faster than 66.67% of TypeScript online submissions for Number of Boomerangs.
 // Memory Usage: 45.4 MB, less than 66.67% of TypeScript online submissions for Number of Boomerangs.
 
-// (Map 대신 Object 사용 시)
+// Map 대신 Object 사용 시 (관련 글: https://medium.com/@bretcameron/how-javascript-maps-can-make-your-code-faster-90f56bf61d9d)
 // Runtime: 1696 ms, faster than 33.33% of TypeScript online submissions for Number of Boomerangs.
 // Memory Usage: 74.3 MB, less than 16.67% of TypeScript online submissions for Number of Boomerangs.
 
