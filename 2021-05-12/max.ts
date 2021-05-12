@@ -6,19 +6,18 @@ function numberOfBoomerangs(points: number[][]): number {
     var total = 0;
     
     for(let i=0;i<points.length;i++) {
-        const distanceMap = new Map<string, number[]>();
+        const distanceMap = new Map<number, number[]>();
         for(let j=0;j<points.length;j++) {
             if(i===j) continue;
 
-            const distanceIJ = getDistance(points[i], points[j]);
+            const distance = getDistance(points[i], points[j]);
 
-            const key = `${i},${distanceIJ}`;
-            const value = distanceMap.get(key);
+            const value = distanceMap.get(distance);
             if(!value) {
-                distanceMap.set(key, [j]);
+                distanceMap.set(distance, [j]);
                 
             } else {
-                distanceMap.set(key, [...value,j]);
+                distanceMap.set(distance, [...value,j]);
             }
             // console.log(distanceMap.values(), key, value);
         }
