@@ -1,0 +1,61 @@
+== 문제 분석
+=== case 1:
+[1, 1, 1], goal: (2)
+
+loop 1:
+current [0]: 1
+index 1: +1 = 2 ([0], [1] 제거), 결과 증가
+index 2: +1 = 2 ([0], [3] 제거), 결과 증가
+
+loop 2:
+array 가 비어있으므로 종료
+
+=== case 2:
+[1, 2, 3], goal: (3)
+
+loop 1:
+current [0]: 1
+index 1: +2 = 3 ([0], [1] 제거), 결과 증가
+index 2: +3 = 4
+
+loop 2:
+current: [2]: 3
+index 더 증가 못하므로 여기서 끝, 끝나기 전에: [2] 제거, 결과 증가
+
+index 0: 1
+index 1: +1 = 2 (0, 1 제거), 결과 증가
+index 2: +1 = 2 (0, 3 제거), 결과 증가
+
+=== 예상 performance
+예상 time complexity: O(N), space complexity: O(1)
+
+== Solution (Pseudocode)
+
+[source]
+----
+val input = [1, 1, 1].toMutableArray()
+var counts = 0
+
+for (var i = 0; i < input.length; i++) {
+    val removableIndices = TreeSet<Int>()
+    val current = input[i];
+    for (j = 0 + 1; j < input.length; j++) {
+        val sum = current + input[j]
+
+        if (sum == goal) {
+            ++counts
+            removableIndices.addAll(i, j)
+        }
+    }
+
+    // 여기서 실제로는 ConcurrentModificationException 이 발생하므로 Enumerable 로 해야 하는데 그러면 loop 조건을 index 기반으로 하기 까다로워짐
+    input = input.forEachIndexed { it, i -> input[i] = null }.mapNotNull()
+}
+
+println(counts)
+----
+
+=== 예상 performance
+예상 time complexity: O(N^2), space complexity: O(N)
+
+Enumerable 로 바꾸고, loop 조건을 refine 하면 기대했던 performance 를 보여줄 것으로 예상
