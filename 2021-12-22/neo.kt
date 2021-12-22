@@ -3,12 +3,8 @@ class Solution {
         var out = 0
         var target = target
         while (startValue < target) {
-            if (target % 2 == 1) {
-                target++
-                out++
-            }
-            target /= 2
-            out++
+            out += 1 + (target and 1)
+            target = (target + 1) /2
         }
         return out + startValue - target
     }
